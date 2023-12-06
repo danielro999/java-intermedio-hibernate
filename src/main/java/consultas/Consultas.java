@@ -81,7 +81,6 @@ public class Consultas {
                 } finally {
                     entityManager.close();
                 }
-        //imprimirEquipos();
     }
 
      public static Equipo buscarEquipo(){
@@ -100,6 +99,8 @@ public class Consultas {
              entityManager.getTransaction().commit();
          } catch (Exception e) {
              System.out.println(e);
+             System.out.println("no es valido el nombre ingresado");
+
          } finally {
              entityManager.close();
          }
