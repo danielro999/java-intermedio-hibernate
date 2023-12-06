@@ -45,7 +45,7 @@ public class Equipo extends EquipoAbstracto implements Serializable  {
     }
 
     public void setPartidosJugados(int partidosJugados) {
-        this.partidosJugados = partidosJugados;
+        this.partidosJugados += partidosJugados;
     }
 
     public int getPuntos() {
@@ -77,34 +77,31 @@ public class Equipo extends EquipoAbstracto implements Serializable  {
         return this.getNombre() + " - " + this.getPartidosJugados() + " - " + this.getPuntos();
     }
 
-    @Override
-    public void enfrentamiento(Equipo visitante, int golesLocal, int golesVisitante) {
 
-    }
 
     @Override
     void partidoGanado() {
-
+        this.setPartidosJugados(1);
     }
 
     @Override
     void partidoPerdido() {
-
+        this.setPartidosJugados(1);
     }
 
     @Override
     void partidoEmpatado() {
-
+        this.setPartidosJugados(1);
     }
 
     @Override
     void puntosGanados() {
-
+        setPuntos(3);
     }
 
     @Override
     void puntoEmpate() {
-
+        setPuntos(1);
     }
 
 

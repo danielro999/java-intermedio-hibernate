@@ -17,13 +17,13 @@ public class Consultas {
     }
     public static void imprimirEquipos() {
             List<Equipo> listEquipos = listEquipos();
-            System.out.println("Equipos - Partidos jugados - Puntos");
+            System.out.println("Equipos primera - Partidos jugados - Puntos campeonato");
             for (Equipo equipo : listEquipos) {
                 System.out.println(equipo);
             }
     }
 
-    public static void insertarEquipo(){
+    public static void ingresarEquipo(){
         entityManager = entityManagerFactory.createEntityManager();
         Scanner scn = new Scanner(System.in);
         System.out.println("ingresar nombre de equipo:");
@@ -67,7 +67,21 @@ public class Consultas {
         System.out.println("ingresar goles de: " + equipoVisitante.getNombre());
         int golesVistante = Integer.parseInt(scn.nextLine());
         System.out.println( equipoLocal.getNombre() + " " + golesLocal + " - " + equipoVisitante.getNombre() + " " + golesVistante);
-
+        equipoLocal.enfrentamiento(equipoVisitante, golesLocal, golesVistante);
+        equipoVisitante.enfrentamiento(equipoLocal, golesVistante, golesLocal);
+        System.out.println(equipoLocal);
+        System.out.println(equipoVisitante);
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(equipoLocal);
+            entityManager.merge(equipoVisitante);
+            entityManager.getTransaction().commit();
+                } catch (Exception e) {
+                    System.out.println(e);
+                } finally {
+                    entityManager.close();
+                }
+        //imprimirEquipos();
     }
 
      public static Equipo buscarEquipo(){
@@ -77,16 +91,19 @@ public class Consultas {
          Equipo equipo = listEquipos().stream().filter(eq -> eq.getNombre().equals(stringLocal)).findFirst().orElse(null);
          return equipo;
      }
-//     public static void
+
+     public static void eliminarEquipo(){
+        Equipo equipoEliminar = buscarEquipo();
+         try {
+             entityManager.getTransaction().begin();
+             entityManager.remove(equipoEliminar);
+             entityManager.getTransaction().commit();
+         } catch (Exception e) {
+             System.out.println(e);
+         } finally {
+             entityManager.close();
+         }
+     }
+
 }
 
-
-//                try {
-//                    entityManager.getTransaction().begin();
-//                    entityManager.merge(equipoLocal);
-//                    entityManager.getTransaction().commit();
-//                } catch (Exception e) {
-//                    System.out.println(e);
-//                } finally {
-//                    entityManager.close();
-//                }
