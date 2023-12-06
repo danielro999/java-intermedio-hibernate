@@ -30,11 +30,14 @@ public class Menu {
                 case 4:
                     eliminarEquipo();
                     break;
+                case 5:
+                    break;
                 default:
                     System.out.println("elegir una de las opciones entre el 1 y el 5");
+                    break;
             }
         }while (opcion != 5);{
-            System.out.println(" fin");
+            System.out.println("Fin");
 
         }
     }
