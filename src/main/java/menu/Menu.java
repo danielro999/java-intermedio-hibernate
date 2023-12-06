@@ -10,8 +10,8 @@ public class Menu {
         int opcion = 0;
 
         do {
-            System.out.println("Eligir opcion: \n " +
-                    "1 - Ver liga \n " +
+            System.out.println("Eligir opcion: \n" +
+                    "1 - Ver liga \n" +
                     "2 - Insertar equipo \n" +
                     "3 - Enfrentar dos equipos \n" +
                     "4 - Eliminar equipo \n" +

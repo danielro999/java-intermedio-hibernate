@@ -74,7 +74,22 @@ public class Equipo extends EquipoAbstracto implements Serializable  {
 
     @Override
     public String toString() {
-        return this.getNombre() + " - " + this.getPartidosJugados() + " - " + this.getPuntos();
+        String nombre  = this.getNombre();
+        String partidosJugados = String.valueOf(this.getPartidosJugados());
+        String puntos = String.valueOf(this.getPuntos());
+        int espaciosFaltantes = 16 - nombre.length();
+        for (int i = 0; i < espaciosFaltantes; i++) {
+            nombre = nombre + " ";
+        }
+
+        for (int i = 0; i < 8; i++) {
+            partidosJugados = " " + partidosJugados + " ";
+            puntos = " " + puntos;
+        }
+
+
+
+        return nombre + "-" + partidosJugados + " - " + puntos;
     }
 
 
